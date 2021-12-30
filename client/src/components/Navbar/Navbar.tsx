@@ -30,7 +30,7 @@ const Navbar = () => {
 
                 <div id="nav-menu" className="navbar-menu">
                     <div className="navbar-end">
-                        <a className="navbar-item has-text-weight-semibold">Listado de juegos</a>
+                        <a className="navbar-item has-text-weight-semibold">Lista de juegos</a>
                         <a className='navbar-item has-text-weight-semibold'>Mis reseñas</a>
                         <div className='navbar-item'>
                             <div className='buttons'>

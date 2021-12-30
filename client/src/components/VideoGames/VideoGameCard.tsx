@@ -54,7 +54,7 @@ const VideoGameCard = () => {
                     </section>
                     <footer className='modal-card-foot'>
                         <button className='button is-danger'>Eliminar</button>
-                        <button className='button' onClick={handleCloseModalDelete}>Cancelar</button>
+                        <button className='button is-danger is-light' onClick={handleCloseModalDelete}>Cancelar</button>
                     </footer>
                 </div>
             </div>
@@ -70,13 +70,13 @@ const VideoGameCard = () => {
                         <div className='field'>
                             <label className='label'>Comentario</label>
                             <div className='control'>
-                                <textarea className='textarea' placeholder='¿Que opinión tienes del videojuego?'></textarea>
+                                <textarea className='textarea' placeholder='¿Que opinión tienes del videojuego League of Legends?'></textarea>
                             </div>
                         </div>
                     </section>
                     <footer className='modal-card-foot'>
                         <button className='button is-link'>Comentar</button>
-                        <button className='button' onClick={handleCloseModalComment}>Cancelar</button>
+                        <button className='button is-link is-light' onClick={handleCloseModalComment}>Cancelar</button>
                     </footer>
                 </div>
             </div>

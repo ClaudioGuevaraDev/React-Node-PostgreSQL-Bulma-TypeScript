@@ -17,9 +17,9 @@ const Register = () => {
                         </header>
                         <div className="card-content">
                         <div className="field">
-                                <label className="label">Nombre y Apellidos</label>
+                                <label className="label">Username</label>
                                 <div className="control has-icons-left">
-                                    <input type="text" className="input " placeholder="Nombre completo"/>
+                                    <input type="text" className="input " placeholder="Username"/>
                                     <span className="icon is-left">
                                         <i className='is-flex is-align-items-center'>
                                             <FaUserAlt/>

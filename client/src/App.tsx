@@ -7,7 +7,7 @@ import Router from './router'
 const App = () => {
     return (
         <div 
-            className="has-background-primary"
+            className="has-background-primary-dark"
             style={{
                 minHeight: '100vh'
             }}

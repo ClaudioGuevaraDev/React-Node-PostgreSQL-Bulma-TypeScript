@@ -1,7 +1,18 @@
+import { useState } from 'react'
+
 import { AiFillEdit, AiFillDelete } from 'react-icons/ai'
 import { MdAddComment } from 'react-icons/md'
 
 const VideoGameCard = () => {
+    const [classModalDelete, setClassModalDelete] = useState<string>('modal')
+    const [classModalComment, setClassModalComment] = useState<string>('modal')
+
+    const handleOpenModalDelete = (): void => setClassModalDelete('modal is-active')
+    const handleCloseModalDelete = (): void => setClassModalDelete('modal is-clipped')
+
+    const handleOpenModalComment = (): void => setClassModalComment('modal is-active')
+    const handleCloseModalComment = (): void => setClassModalComment('modal is-clipped')
+
     return (
         <div className='column is-4'>
             <div className='card'>
@@ -18,17 +29,55 @@ const VideoGameCard = () => {
                                 <AiFillEdit/>
                             </i>
                         </button>
-                        <button className='button is-danger is-small'>
+                        <button className='button is-danger is-small' onClick={handleOpenModalDelete}>
                             <i className='is-size-6 is-flex is-align-items-center'>
                                 <AiFillDelete/>
                             </i>
                         </button>
-                        <button className='button is-info is-small'>
+                        <button className='button is-info is-small' onClick={handleOpenModalComment}>
                             <i className='is-size-6 is-flex is-align-items-center'>
                                 <MdAddComment/>
                             </i>
                         </button>
                     </div>
+                </div>
+            </div>
+            <div className={classModalDelete}>
+                <div className='modal-background'></div>
+                <div className='modal-card'>
+                    <header className='modal-card-head'>
+                        <p className='modal-card-title has-text-weight-bold'>Eliminar VideoJuego</p>
+                        <button className='delete' aria-label='close' onClick={handleCloseModalDelete}></button>
+                    </header>
+                    <section className='modal-card-body'>
+                        <p className='has-text-weight-semibold has-text-dark'>¿Estás seguro de eliminar el videojuego 'League of Legends'?</p>
+                    </section>
+                    <footer className='modal-card-foot'>
+                        <button className='button is-danger'>Eliminar</button>
+                        <button className='button' onClick={handleCloseModalDelete}>Cancelar</button>
+                    </footer>
+                </div>
+            </div>
+
+            <div className={classModalComment}>
+                <div className='modal-background'></div>
+                <div className='modal-card'>
+                    <header className='modal-card-head'>
+                        <p className='modal-card-title has-text-weight-bold'>Comentar VideoJuego</p>
+                        <button className='delete' aria-label='close' onClick={handleCloseModalComment}></button>
+                    </header>
+                    <section className='modal-card-body'>
+                        <div className='field'>
+                            <label className='label'>Comentario</label>
+                            <div className='control'>
+                                <textarea className='textarea' placeholder='¿Que opinión tienes del videojuego?'></textarea>
+                            </div>
+                        </div>
+                    </section>
+                    <footer className='modal-card-foot'>
+                        <button className='button is-link'>Comentar</button>
+                        <button className='button' onClick={handleCloseModalComment}>Cancelar</button>
+                    </footer>
                 </div>
             </div>
         </div>

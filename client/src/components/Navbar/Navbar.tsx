@@ -1,17 +1,17 @@
 import { useState } from 'react'
 
 const Navbar = () => {
-    const [classModal, setClassModal] = useState('modal')
+    const [classModal, setClassModal] = useState<string>('modal')
     
-    const handleNavbar = () => {
+    const handleNavbar = (): void => {
         document.getElementById('nav-menu')?.classList.toggle('is-active')
     }
 
-    const handleOpenModal = () => {
+    const handleOpenModal = (): void => {
         setClassModal('modal is-active')
     }
 
-    const handleCloseModal = () => {
+    const handleCloseModal = (): void => {
         setClassModal('modal is-clipped')
     }
 

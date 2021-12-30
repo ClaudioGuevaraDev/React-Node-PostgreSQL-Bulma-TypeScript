@@ -1,38 +1,32 @@
 import { useState } from 'react'
 
 import { AiFillEdit, AiFillDelete } from 'react-icons/ai'
-import { MdAddComment } from 'react-icons/md'
 
-interface Props {
-    title: string
-}
-
-const VideoGameCard = (props: Props) => {
+const ReviewCard = () => {
     const [classModalDelete, setClassModalDelete] = useState<string>('modal')
-    const [classModalComment, setClassModalComment] = useState<string>('modal')
-
-    const { title } = props
+    const [classModalEdit, setClassModalEdit] = useState<string>('modal')
 
     const handleOpenModalDelete = (): void => setClassModalDelete('modal is-active')
     const handleCloseModalDelete = (): void => setClassModalDelete('modal is-clipped')
 
-    const handleOpenModalComment = (): void => setClassModalComment('modal is-active')
-    const handleCloseModalComment = (): void => setClassModalComment('modal is-clipped')
+    const handleOpenModalEdit = (): void => setClassModalEdit('modal is-active')
+    const handleCloseModalEdit = (): void => setClassModalEdit('modal is-clipped')
 
     return (
-        <div className='column is-4'>
-            <div className='card'>
-                <div className='card-image'>
-                    <figure className='image is-4by3'>
-                        <img src='https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_LeagueofLegends_RiotGames_S1_2560x1440-ee500721c06da3ec1e5535a88588c77f'/>
-                    </figure>
+        <div className="column is-4">
+            <div className="card">
+                <div className="card-header p-1 is-flex is-flex-direction-column has-text-centered">
+                    <p className="card-header-title is-centered is-size-5">
+                        League of Legends 
+                    </p>
+                    <small>30-12-2021</small>
                 </div>
-                <div className='card-content is-flex is-flex-direction-column is-justify-content-space-between' style={{ height:"180px" }}>
-                    <h2 className='has-text-weight-bold is-size-4 has-text-centered'>
-                        {title}
-                    </h2>
-                    <div className='buttons is-flex is-justify-content-space-between is-align-items-center mt-5'>
-                        <button className='button is-warning is-small'>
+                <div className='card-content is-flex is-flex-direction-column is-justify-content-space-between' style={{ height:"280px" }}>
+                    <p className='has-text-centered is-italic'>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum  is simply dummy text of the printing and typesetting industry. Lorem Ipsum  is simply dummy text of the printing and typesetting industry. Lorem Ipsum  is simply dummy text of the printing and typesetting.  
+                    </p>
+                    <div className='buttons is-flex is-justify-content-space-around is-align-items-center mt-5'>
+                        <button className='button is-warning is-small' onClick={handleOpenModalEdit}>
                             <i className='is-size-6 is-flex is-align-items-center'>
                                 <AiFillEdit/>
                             </i>
@@ -42,23 +36,19 @@ const VideoGameCard = (props: Props) => {
                                 <AiFillDelete/>
                             </i>
                         </button>
-                        <button className='button is-info is-small' onClick={handleOpenModalComment}>
-                            <i className='is-size-6 is-flex is-align-items-center'>
-                                <MdAddComment/>
-                            </i>
-                        </button>
                     </div>
                 </div>
             </div>
+
             <div className={classModalDelete}>
                 <div className='modal-background'></div>
                 <div className='modal-card'>
                     <header className='modal-card-head'>
-                        <p className='modal-card-title has-text-weight-bold'>Eliminar VideoJuego</p>
+                        <p className='modal-card-title has-text-weight-bold'>Eliminar Reseña</p>
                         <button className='delete' aria-label='close' onClick={handleCloseModalDelete}></button>
                     </header>
                     <section className='modal-card-body'>
-                        <p className='has-text-weight-semibold has-text-dark'>¿Estás seguro de eliminar el videojuego 'League of Legends'?</p>
+                        <p className='has-text-weight-semibold has-text-dark'>¿Estás seguro de eliminar la reseña?</p>
                     </section>
                     <footer className='modal-card-foot'>
                         <button className='button is-danger'>Eliminar</button>
@@ -67,12 +57,12 @@ const VideoGameCard = (props: Props) => {
                 </div>
             </div>
 
-            <div className={classModalComment}>
+            <div className={classModalEdit}>
                 <div className='modal-background'></div>
                 <div className='modal-card'>
                     <header className='modal-card-head'>
-                        <p className='modal-card-title has-text-weight-bold'>Comentar VideoJuego</p>
-                        <button className='delete' aria-label='close' onClick={handleCloseModalComment}></button>
+                        <p className='modal-card-title has-text-weight-bold'>Editar Comentario</p>
+                        <button className='delete' aria-label='close' onClick={handleCloseModalEdit}></button>
                     </header>
                     <section className='modal-card-body'>
                         <div className='field'>
@@ -83,8 +73,8 @@ const VideoGameCard = (props: Props) => {
                         </div>
                     </section>
                     <footer className='modal-card-foot'>
-                        <button className='button is-link'>Comentar</button>
-                        <button className='button is-link is-light' onClick={handleCloseModalComment}>Cancelar</button>
+                        <button className='button is-link'>Editar</button>
+                        <button className='button is-link is-light' onClick={handleCloseModalEdit}>Cancelar</button>
                     </footer>
                 </div>
             </div>
@@ -92,4 +82,4 @@ const VideoGameCard = (props: Props) => {
     )
 }
 
-export default VideoGameCard
+export default ReviewCard

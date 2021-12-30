@@ -6,6 +6,7 @@ import Home from '../pages/Home/Home'
 
 import VideoGameFormAdd from '../components/VideoGames/VideoGameFormAdd'
 import VideoGameFormUpdate from '../components/VideoGames/VideoGameFormUpdate'
+import ReviewList from '../components/Review/ReviewList'
 
 const Router = () => {
     return (
@@ -15,6 +16,7 @@ const Router = () => {
             <Route path='/home' element={<Home/>}/>
             <Route path='/add-videogame' element={<VideoGameFormAdd/>}/>
             <Route path='/update-videogame/:id' element={<VideoGameFormUpdate/>}/>
+            <Route path='/reviews' element={<ReviewList/>}/>
         </Routes>
     )
 }

@@ -1,0 +1,9 @@
+@api = http://localhost:4000/api/auth
+
+###
+POST {{api}}/sign-up
+Content-Type: application/json
+
+{
+    
+}

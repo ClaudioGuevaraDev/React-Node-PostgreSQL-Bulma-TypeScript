@@ -1,10 +1,14 @@
+import 'express-async-errors'
+
 import express from 'express'
 import morgan from 'morgan'
 import cors from 'cors'
 import helmet from 'helmet'
 
 import config from './config'
+
 import * as routes from './routes'
+import * as middlewares from './middlewares'
 
 const app = express()
 
@@ -18,5 +22,9 @@ app.use(helmet())
 
 app.use('/api/auth', routes.authRoutes)
 app.use('/api/users', routes.usersRoutes)
+app.use('/api/roles', routes.rolesRoutes)
+
+app.use(middlewares.errorHandler)
+app.use(middlewares.unknownEndpoint)
 
 export default app

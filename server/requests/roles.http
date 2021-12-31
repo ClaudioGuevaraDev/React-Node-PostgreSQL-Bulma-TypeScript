@@ -1,0 +1,11 @@
+@api = http://localhost:4000/api/roles
+
+###
+POST {{api}}
+Content-Type: application/json
+
+{
+    "name": "User"
+}
+###
+GET {{api}}

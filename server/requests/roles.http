@@ -5,7 +5,9 @@ POST {{api}}
 Content-Type: application/json
 
 {
-    "name": "User"
+    "name": "user"
 }
 ###
 GET {{api}}
+###
+DELETE {{api}}/10

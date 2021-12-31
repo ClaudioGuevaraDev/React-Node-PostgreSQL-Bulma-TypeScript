@@ -6,5 +6,6 @@ const router = Router()
 
 router.post('/', rolesCtrl.createRoles)
 router.get('/', rolesCtrl.getAllRoles)
+router.delete('/:id', rolesCtrl.deleteRole)
 
 export default router

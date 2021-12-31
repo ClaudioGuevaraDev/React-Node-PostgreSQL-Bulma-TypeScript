@@ -24,3 +24,16 @@ export const getAllRoles: RequestHandler = async (req, res) => {
 
     res.json(rows)
 }
+
+export const deleteRole: RequestHandler = async (req, res) => {
+    const result = await pool.query(
+        'DELETE FROM roles WHERE id = $1 RETURNING *',
+        [req.params.id]
+    )
+
+    const { rows } = result
+
+    if (!rows[0]) return res.status(404).json({ message: 'El rol no existe.' })
+
+    res.json(rows[0])
+}

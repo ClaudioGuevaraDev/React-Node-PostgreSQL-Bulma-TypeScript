@@ -10,4 +10,11 @@ Content-Type: application/json
 ###
 GET {{api}}
 ###
-DELETE {{api}}/10
+DELETE {{api}}/11
+###
+PUT {{api}}/15
+Content-Type: application/json
+
+{
+    "name": "User"
+}

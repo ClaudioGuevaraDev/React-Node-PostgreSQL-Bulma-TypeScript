@@ -7,10 +7,16 @@ import helmet from 'helmet'
 
 import config from './config'
 
+import {
+    createRoles
+} from './libs/initialSetup'
+
 import * as routes from './routes'
 import * as middlewares from './middlewares'
 
 const app = express()
+
+createRoles()
 
 app.set('port', config.PORT)
 

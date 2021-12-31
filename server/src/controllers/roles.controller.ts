@@ -37,3 +37,18 @@ export const deleteRole: RequestHandler = async (req, res) => {
 
     res.json(rows[0])
 }
+
+export const updateRole: RequestHandler = async (req, res) => {
+    const { name } = req.body
+
+    const result = await pool.query(
+        'UPDATE roles SET name = $1, updatedAt = $2 WHERE id = $3 RETURNING *',
+        [name, new Date(), req.params.id]
+    )
+
+    const { rows } = result
+
+    if (!rows[0]) return res.status(404).json({ message: 'El rol no existe.' })
+
+    res.json(rows[0])
+}

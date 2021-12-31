@@ -1,6 +1,11 @@
+import jwt from 'jsonwebtoken'
+
 import { RequestHandler } from 'express'
 
+import config from '../config'
+
 import {
+    comparePassword,
     encryptPassword
 } from '../libs/handlePassword'
 import { pool } from '../database'
@@ -31,5 +36,26 @@ export const signUp: RequestHandler = async (req, res) => {
 }
 
 export const signIn: RequestHandler = async (req, res) => {
-    
+    const { email, password } = req.body
+
+    const result = await pool.query(
+        'SELECT U.id, U.username, U.password, R.name as role FROM users as U JOIN roles as R ON U.roleId = R.id WHERE U.email = $1',
+        [email]
+    )
+
+    if (result.rows.length === 0) return res.status(401).json({ message: 'Error al iniciar sesión.' })
+
+    if (await comparePassword(password, result.rows[0].password) === false) return res.status(401).json({ message: 'Error al iniciar sesión.' })
+
+    const userToken = {
+        id: result.rows[0].id,
+        username: result.rows[0].username,
+        role: result.rows[0].role
+    }
+
+    const token = jwt.sign(userToken, config.SECRET, {
+        expiresIn: 86400 // 24 horas
+    })
+
+    res.json({ token })
 } 

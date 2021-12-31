@@ -8,7 +8,8 @@ const config = {
     PG_PASSWORD: process.env.PG_PASSWORD || '123',
     PG_HOST: process.env.PG_HOST || 'localhost',
     PG_PORT: 5432,
-    PG_DATABASE: process.env.PG_DATABASE || 'project01'
+    PG_DATABASE: process.env.PG_DATABASE || 'project01',
+    SECRET: process.env.SECRET || 'algo'
 }
 
 

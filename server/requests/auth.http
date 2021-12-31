@@ -9,3 +9,11 @@ Content-Type: application/json
     "email": "chicha@gmail.com",
     "password": "claudiochicha78"
 }
+###
+POST {{api}}/sign-in
+Content-Type: application/json
+
+{
+    "email": "chicha@gmail.com",
+    "password": "claudiochicha78"
+}

@@ -1,11 +1,18 @@
 import { useState, useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import GlobalContext from '../../context/GlobalContext'
+
+import {
+    LOGGED_USER
+} from '../../context/AppConstants'
 
 const Navbar = () => {
     const [classModal, setClassModal] = useState<string>('modal')
     
-    const { state } = useContext(GlobalContext)
+    const navigate = useNavigate()
+
+    const { state, dispatch } = useContext(GlobalContext)
 
     const { username, role } = state
 
@@ -19,6 +26,20 @@ const Navbar = () => {
 
     const handleCloseModal = (): void => {
         setClassModal('modal is-clipped')
+    }
+
+    const handleLogout = () => {
+        dispatch({
+            type: LOGGED_USER,
+            payload: {
+                logged: false,
+                token: '',
+                username: '',
+                role: ''
+            }
+        })
+        window.localStorage.removeItem('token')
+        navigate('/')
     }
 
     return (
@@ -62,7 +83,7 @@ const Navbar = () => {
                             <p className='has-text-dark has-text-weight-semibold'>¿Estás seguro de cerrar sesión?</p>
                         </section>
                         <footer className='modal-card-foot'>
-                            <button className='button is-link'>Cerrar Sesión</button>
+                            <button className='button is-link' onClick={handleLogout}>Cerrar Sesión</button>
                             <button className='button' onClick={handleCloseModal}>Cancelar</button>
                         </footer>
                     </div>

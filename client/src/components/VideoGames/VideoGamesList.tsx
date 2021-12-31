@@ -22,7 +22,7 @@ const VideoGamesList = () => {
                 </div>
             </div>
             <div className='columns is-multiline is-variable is-2-mobile is-2-tablet is-2-desktop is-2-widescreen is-2-fullhd'>
-                <VideoGameCard title={'League of Legends dasd asdj askdj askdj skadj s ad'}/>
+                <VideoGameCard title={'asd jkasd jaskj lkdj aslkdj aslkdj asd aaaaaaaaaaaa as'}/>
                 <VideoGameCard title={'League of Legends'}/>
                 <VideoGameCard title={'League of Legends'}/>
                 <VideoGameCard title={'League of Legends'}/>

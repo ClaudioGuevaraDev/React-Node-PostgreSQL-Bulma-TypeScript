@@ -1,5 +1,8 @@
+import jwt_decode from 'jwt-decode'
+
 import { 
     useState,
+    useEffect,
     FormEvent,
     useContext
 } from 'react'
@@ -14,6 +17,9 @@ import GlobalContext from '../../../context/GlobalContext'
 import {
     LOGGED_USER
 } from '../../../context/AppConstants'
+import {
+    IDecodedToken
+} from '../../../interfaces/decodedTokenInterface'
 
 import {
     signIn
@@ -28,16 +34,30 @@ const Login = () => {
 
     const navigate = useNavigate()
 
-    const { dispatch } = useContext(GlobalContext)
+    const { state, dispatch } = useContext(GlobalContext)
+
+    const { logged } = state
+
+    // useEffect(() => {
+    //     if (logged === true) navigate('/home')
+    // }, [])
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         try {
             await signIn(user)
+            const tokenJSON = window.localStorage.getItem('token')
+            const tokenParse = tokenJSON ? JSON.parse(tokenJSON) : ''
+         
+            const decodedToken: IDecodedToken = jwt_decode(tokenParse)
+
             dispatch({
                 type: LOGGED_USER,
                 payload: {
-                    logged: true
+                    logged: true,
+                    token: tokenParse,
+                    username: decodedToken.username,
+                    role: decodedToken.role
                 }
             })
             navigate('/home')

@@ -13,7 +13,10 @@ export const AppReducer = (state: IReducerState, action: IReducerAction) => {
         case LOGGED_USER:
             return {
                 ...state,
-                logged: payload.logged
+                logged: payload.logged,
+                token: payload.token,
+                username: payload.username,
+                role: payload.role
             }
         default:
             return state

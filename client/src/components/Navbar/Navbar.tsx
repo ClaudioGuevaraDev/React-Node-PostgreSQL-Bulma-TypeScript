@@ -1,8 +1,14 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+
+import GlobalContext from '../../context/GlobalContext'
 
 const Navbar = () => {
     const [classModal, setClassModal] = useState<string>('modal')
     
+    const { state } = useContext(GlobalContext)
+
+    const { username, role } = state
+
     const handleNavbar = (): void => {
         document.getElementById('nav-menu')?.classList.toggle('is-active')
     }
@@ -19,7 +25,9 @@ const Navbar = () => {
         <nav className="navbar p-2 is-primary" role="navigation" aria-label="main navigation">
             <div className="container">
                 <div className="navbar-brand">
-                    <h2 className="navbar-item has-text-weight-bold is-size-5">Claudio Guevara (User)</h2>
+                    <h2 className="navbar-item has-text-weight-bold is-size-5">
+                        {username} ({role})
+                    </h2>
 
                     <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" onClick={handleNavbar}>
                         <span aria-hidden="true"></span>

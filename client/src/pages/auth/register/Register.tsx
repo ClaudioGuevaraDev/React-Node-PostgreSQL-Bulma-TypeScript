@@ -1,10 +1,17 @@
-import { Link } from 'react-router-dom'
+import {
+    useEffect,
+    useContext
+} from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { FaUserAlt } from 'react-icons/fa'
 import { IoMdMail } from 'react-icons/io'
 import { RiLockPasswordFill } from 'react-icons/ri'
 
+import GlobalContext from '../../../context/GlobalContext'
+
 const Register = () => {
+
     return (
         <div className="container p-5">
             <div className="columns is-flex is-justify-content-center">

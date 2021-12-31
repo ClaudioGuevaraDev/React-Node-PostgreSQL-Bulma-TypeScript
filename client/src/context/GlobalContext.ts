@@ -6,7 +6,10 @@ import {
 } from '../interfaces/ReducerInterface'
 
 export const initialState: IReducerState = {
-    logged: false
+    logged: false,
+    token: '',
+    username: '',
+    role: ''
 }
 
 const GlobalContext = createContext<IGlobalContextProps>({

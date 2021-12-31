@@ -39,7 +39,6 @@ const Router = () => {
         const tokenParse = tokenJSON ? JSON.parse(tokenJSON) : ''
 
         if (tokenParse === '') {
-            navigate('/')
             setLoading(false)
             return
         }

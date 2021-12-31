@@ -38,9 +38,9 @@ const Login = () => {
 
     const { logged } = state
 
-    // useEffect(() => {
-    //     if (logged === true) navigate('/home')
-    // }, [])
+    useEffect(() => {
+        if (logged === true) navigate('/home')
+    }, [])
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()

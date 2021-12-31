@@ -1,7 +1,9 @@
 import 'bulma/css/bulma.min.css'
+import 'react-toastify/dist/ReactToastify.css'
 
 import { useReducer } from 'react'
 import { BrowserRouter } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 
 import Router from './router'
 
@@ -24,6 +26,7 @@ const App = () => {
             <GlobalContextProvider value={{ state, dispatch }}>
                 <BrowserRouter>
                     <Router/>
+                    <ToastContainer/>
                 </BrowserRouter>
             </GlobalContextProvider>
         </div>

@@ -6,7 +6,7 @@ Aplicación para la administración de videojuegos, las cuales poseen un título
 
 Existen dos tipos de usuarios, los cuales son User y Admin. Las funcionalidades para cada uno son:
 
-- **User:**: Listar los videojuegos.
+- **User**: Listar los videojuegos.
 - **Admin:** Listar, crear, actualizar y editar videojuegos.
 
 La aplicación cuenta con rutas protegidas.

@@ -12,5 +12,9 @@ router.put('/upload-image/:id', [
 router.get('/', videoGamesCtrl.getAllVideoGames)
 router.get('/:id', videoGamesCtrl.getOneVideoGame)
 router.delete('/:id', videoGamesCtrl.deleteOneVideoGame)
+router.put('/:id', videoGamesCtrl.updateVideoGame)
+router.put('/updated-image/:id', [
+    middlewares.fileUpload
+], videoGamesCtrl.updatedImageVideoGame)
 
 export default router

@@ -17,4 +17,15 @@ export interface IVigeoGameGet {
     createdAt: string
     updatedAt: string
     categoryId: number
+    file?: any
+}
+
+export const initialStateVideoGameGet: IVigeoGameGet = {
+    id: 0,
+    title: '',
+    image: '',
+    createdAt: '',
+    updatedAt: '',
+    categoryId: 1,
+    file: null
 }

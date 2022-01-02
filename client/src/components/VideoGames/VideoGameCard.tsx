@@ -1,4 +1,5 @@
 import { useState, Dispatch, SetStateAction } from 'react'
+import { Link } from 'react-router-dom'
 
 import { toast } from 'react-toastify'
 import { AiFillEdit, AiFillDelete } from 'react-icons/ai'
@@ -67,7 +68,7 @@ const VideoGameCard = (props: Props) => {
                     <div className='buttons is-flex is-justify-content-space-between is-align-items-center mt-5'>
                         <button className='button is-warning is-small'>
                             <i className='is-size-6 is-flex is-align-items-center'>
-                                <AiFillEdit/>
+                                <Link to={`/update-videogame/${videoGame.id}`} style={{color: '#000'}}><AiFillEdit/></Link>
                             </i>
                         </button>
                         <button className='button is-danger is-small' onClick={() => handleModalDelete(videoGame.id)}>

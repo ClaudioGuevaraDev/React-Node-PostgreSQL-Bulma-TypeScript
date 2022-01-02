@@ -33,3 +33,21 @@ export const getOneVideoGame = async (id: string) => {
 export const deleteOneVideoGame = async (id: string) => {
     return await axios.delete(`${baseUrl}/${id}`)
 }
+
+export interface updatedVideoGame {
+    title: string
+    createdAt: string
+    categoryId: number
+}
+
+export const updateOneVideoGame = async (videoGame: updatedVideoGame, id: string) => {
+    const { data } = await axios.put(`${baseUrl}/${id}`, videoGame)
+
+    return data
+}
+
+export const updatedImageVideoGame = async (formData: any, id: string) => {
+    const { data } = await axios.put(`${baseUrl}/updated-image/${id}`, formData)
+
+    return data
+}

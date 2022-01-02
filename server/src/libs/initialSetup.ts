@@ -66,12 +66,12 @@ export const createUserAdmin = async () => {
         if (result.rowCount > 0) return
         
         const roleFound = await pool.query(
-            'SELECT * FROM categories WHERE name = $1',
+            'SELECT * FROM roles WHERE name = $1',
             ["Admin"]
         )
 
         await pool.query(
-            'INSERT INTO users (username, email, password, role, createdAt, updatedAt) VALUES ($1, $2, $3, $4, $5, $6)',
+            'INSERT INTO users (username, email, password, roleId, createdAt, updatedAt) VALUES ($1, $2, $3, $4, $5, $6)',
             ["Claudio Guevara", "claudio.guevara.dev@gmail.com", await encryptPassword("claudio123"), roleFound.rows[0].id, new Date(), new Date()]
         )
 

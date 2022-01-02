@@ -8,7 +8,8 @@ import helmet from 'helmet'
 import config from './config'
 
 import {
-    createRoles
+    createRoles,
+    createCategories
 } from './libs/initialSetup'
 
 import * as routes from './routes'
@@ -17,6 +18,7 @@ import * as middlewares from './middlewares'
 const app = express()
 
 createRoles()
+createCategories()
 
 app.set('port', config.PORT)
 
@@ -29,6 +31,7 @@ app.use(helmet())
 app.use('/api/auth', routes.authRoutes)
 app.use('/api/users', routes.usersRoutes)
 app.use('/api/roles', routes.rolesRoutes)
+app.use('/api/categories', routes.categoriesRoutes)
 
 app.use(middlewares.errorHandler)
 app.use(middlewares.unknownEndpoint)

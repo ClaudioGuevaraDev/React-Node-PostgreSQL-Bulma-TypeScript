@@ -23,3 +23,35 @@ export const createRoles = async () => {
         console.log(error)
     }
 }
+
+export const createCategories = async () => {
+    try {
+
+        const result = await pool.query('SELECT * FROM categories')
+
+        if (result.rowCount > 0) return
+
+        await pool.query(
+            'INSERT INTO categories (name, createdAt, updatedAt) VALUES ($1, $2, $3)', 
+            ['Todos las categorías', new Date(), new Date()]
+        )
+        await pool.query(
+            'INSERT INTO categories (name, createdAt, updatedAt) VALUES ($1, $2, $3)', 
+            ['Peleas', new Date(), new Date()]
+        )
+        await pool.query(
+            'INSERT INTO categories (name, createdAt, updatedAt) VALUES ($1, $2, $3)', 
+            ['Estrategia', new Date(), new Date()]
+        )
+        await pool.query(
+            'INSERT INTO categories (name, createdAt, updatedAt) VALUES ($1, $2, $3)', 
+            ['Entretención', new Date(), new Date()]
+        )
+        await pool.query(
+            'INSERT INTO categories (name, createdAt, updatedAt) VALUES ($1, $2, $3)', 
+            ['Deporte', new Date(), new Date()]
+        )
+    } catch (error) {
+        console.log(error)
+    }
+}

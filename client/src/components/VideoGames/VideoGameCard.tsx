@@ -3,15 +3,19 @@ import { useState } from 'react'
 import { AiFillEdit, AiFillDelete } from 'react-icons/ai'
 import { MdAddComment } from 'react-icons/md'
 
+import {
+    IVigeoGameGet
+} from '../../interfaces/videoGameInterface'
+
 interface Props {
-    title: string
+    videoGame: IVigeoGameGet
 }
 
 const VideoGameCard = (props: Props) => {
     const [classModalDelete, setClassModalDelete] = useState<string>('modal')
     const [classModalComment, setClassModalComment] = useState<string>('modal')
 
-    const { title } = props
+    const { videoGame } = props
 
     const handleOpenModalDelete = (): void => setClassModalDelete('modal is-active')
     const handleCloseModalDelete = (): void => setClassModalDelete('modal is-clipped')
@@ -24,12 +28,12 @@ const VideoGameCard = (props: Props) => {
             <div className='card'>
                 <div className='card-image'>
                     <figure className='image is-4by3'>
-                        <img src='https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_LeagueofLegends_RiotGames_S1_2560x1440-ee500721c06da3ec1e5535a88588c77f'/>
+                        <img src={`http://localhost:4000/${videoGame.image}`}/>
                     </figure>
                 </div>
                 <div className='card-content is-flex is-flex-direction-column is-justify-content-space-between' style={{ height:"180px" }}>
                     <h2 className='has-text-weight-bold is-size-4 has-text-centered'>
-                        {title}
+                        {videoGame.title}
                     </h2>
                     <div className='buttons is-flex is-justify-content-space-between is-align-items-center mt-5'>
                         <button className='button is-warning is-small'>

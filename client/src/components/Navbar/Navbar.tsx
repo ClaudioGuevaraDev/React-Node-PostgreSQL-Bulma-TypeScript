@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 import GlobalContext from '../../context/GlobalContext'
 
@@ -59,8 +59,8 @@ const Navbar = () => {
 
                 <div id="nav-menu" className="navbar-menu">
                     <div className="navbar-end">
-                        <a className="navbar-item has-text-weight-semibold">Lista de juegos</a>
-                        <a className='navbar-item has-text-weight-semibold'>Mis reseñas</a>
+                        <Link to='/home' className="navbar-item has-text-weight-semibold">Lista de juegos</Link>
+                        <Link to='/reviews' className='navbar-item has-text-weight-semibold'>Mis reseñas</Link>
                         <div className='navbar-item'>
                             <div className='buttons'>
                                 <a className='button is-danger' onClick={handleOpenModal}>

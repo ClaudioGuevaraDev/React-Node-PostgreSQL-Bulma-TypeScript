@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { IoMdAddCircle } from 'react-icons/io'
 
 import VideoGameCard from "./VideoGameCard"
@@ -7,12 +8,12 @@ const VideoGamesList = () => {
         <div className="container p-5">
             <div className="columns">
                 <div className="column is-full is-flex is-justify-content-space-between is-align-items-center">
-                    <button className="button is-success">
+                    <Link to='/add-videogame' className="button is-success">
                         <span className="icon">
                             <i className='is-flex is-align-items-center'><IoMdAddCircle/></i>
                         </span>
                         <span>AGREGAR VIDEOJUEGO</span>
-                    </button>
+                    </Link>
                     <div className="select">
                         <select className=''>
                             <option>Todos los juegos</option>

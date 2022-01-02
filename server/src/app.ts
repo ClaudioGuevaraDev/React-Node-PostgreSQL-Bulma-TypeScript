@@ -32,6 +32,7 @@ app.use('/api/auth', routes.authRoutes)
 app.use('/api/users', routes.usersRoutes)
 app.use('/api/roles', routes.rolesRoutes)
 app.use('/api/categories', routes.categoriesRoutes)
+app.use('/api/video-games', routes.videoGamesRoutes)
 
 app.use(middlewares.errorHandler)
 app.use(middlewares.unknownEndpoint)

@@ -31,6 +31,7 @@ import {
 
 const Login = () => {
     const [user, setUser] = useState<IUserSignIn>(initialStateUserSignIn)
+    const [loading, setLoading] = useState<Boolean>(false)
 
     const navigate = useNavigate()
 
@@ -44,6 +45,7 @@ const Login = () => {
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+        setLoading(true)
         try {
             await signIn(user)
             const tokenJSON = window.localStorage.getItem('token')
@@ -69,6 +71,7 @@ const Login = () => {
             })
         }
         handleCancel()
+        setLoading(false)
     }
 
     const handleCancel = () => {
@@ -114,7 +117,7 @@ const Login = () => {
                                 </Link>
                                 <div className="field is-grouped">
                                     <div className="control">
-                                        <button type="submit" className="button is-link">Iniciar Sesión</button>
+                                        <button type="submit" className={`button is-link ${loading ? 'is-loading' : ''}`}>Iniciar Sesión</button>
                                     </div>
                                     <div className="control">
                                         <button type='button' className="button is-link is-light" onClick={handleCancel}>Cancelar</button>

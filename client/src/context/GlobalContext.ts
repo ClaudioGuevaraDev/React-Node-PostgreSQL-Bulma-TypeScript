@@ -17,7 +17,6 @@ const GlobalContext = createContext<IGlobalContextProps>({
     dispatch: () => {}
 })
 
-export const GlobalContextConsumer = GlobalContext.Consumer
 export const GlobalContextProvider = GlobalContext.Provider
 
 export default GlobalContext

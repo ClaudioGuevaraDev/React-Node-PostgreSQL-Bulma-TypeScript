@@ -23,3 +23,13 @@ export const getAllVideoGames = async () => {
 
     return data
 }
+
+export const getOneVideoGame = async (id: string) => {
+    const { data } = await axios.get(`${baseUrl}/${id}`)
+
+    return data
+}
+
+export const deleteOneVideoGame = async (id: string) => {
+    return await axios.delete(`${baseUrl}/${id}`)
+}

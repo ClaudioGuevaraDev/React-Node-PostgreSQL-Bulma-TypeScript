@@ -1,27 +1,56 @@
-import { useState } from 'react'
+import { useState, Dispatch, SetStateAction } from 'react'
 
+import { toast } from 'react-toastify'
 import { AiFillEdit, AiFillDelete } from 'react-icons/ai'
 import { MdAddComment } from 'react-icons/md'
 
 import {
     IVigeoGameGet
 } from '../../interfaces/videoGameInterface'
+import {
+    deleteOneVideoGame
+} from '../../services/videoGamesService'
 
 interface Props {
     videoGame: IVigeoGameGet
+    refresh: boolean
+    setRefresh: Dispatch<SetStateAction<boolean>>
 }
 
 const VideoGameCard = (props: Props) => {
     const [classModalDelete, setClassModalDelete] = useState<string>('modal')
     const [classModalComment, setClassModalComment] = useState<string>('modal')
+    const [selectVideoGame, setSelectVideoGame] = useState<string>('')
 
-    const { videoGame } = props
+    const { videoGame, refresh, setRefresh } = props
 
     const handleOpenModalDelete = (): void => setClassModalDelete('modal is-active')
     const handleCloseModalDelete = (): void => setClassModalDelete('modal is-clipped')
 
     const handleOpenModalComment = (): void => setClassModalComment('modal is-active')
     const handleCloseModalComment = (): void => setClassModalComment('modal is-clipped')
+
+    const handleModalDelete = async (id: number) => {
+        setSelectVideoGame(id.toString())
+        handleOpenModalDelete()
+    }
+
+    const handleDeleteVideoGame = async () => {
+        try {
+            await deleteOneVideoGame(selectVideoGame)
+            toast.success('Videojuego eliminado con éxito.', {
+                position: 'top-center',
+                autoClose: 5000
+            })
+            handleCloseModalDelete()
+            setRefresh(!refresh)
+        } catch (error: any) {
+            toast.error(error.response.data.message, {
+                position: 'top-center',
+                autoClose: 5000
+            })
+        }
+    }
 
     return (
         <div className='column is-4'>
@@ -41,7 +70,7 @@ const VideoGameCard = (props: Props) => {
                                 <AiFillEdit/>
                             </i>
                         </button>
-                        <button className='button is-danger is-small' onClick={handleOpenModalDelete}>
+                        <button className='button is-danger is-small' onClick={() => handleModalDelete(videoGame.id)}>
                             <i className='is-size-6 is-flex is-align-items-center'>
                                 <AiFillDelete/>
                             </i>
@@ -62,11 +91,11 @@ const VideoGameCard = (props: Props) => {
                         <button className='delete' aria-label='close' onClick={handleCloseModalDelete}></button>
                     </header>
                     <section className='modal-card-body'>
-                        <p className='has-text-weight-semibold has-text-dark'>¿Estás seguro de eliminar el videojuego 'League of Legends'?</p>
+                        <p className='has-text-weight-semibold has-text-dark'>¿Estás seguro de eliminar el videojuego?</p>
                     </section>
                     <footer className='modal-card-foot'>
-                        <button className='button is-danger'>Eliminar</button>
-                        <button className='button is-danger is-light' onClick={handleCloseModalDelete}>Cancelar</button>
+                        <button onClick={handleDeleteVideoGame} type='button' className='button is-danger'>Eliminar</button>
+                        <button type='button' className='button is-danger is-light' onClick={handleCloseModalDelete}>Cancelar</button>
                     </footer>
                 </div>
             </div>

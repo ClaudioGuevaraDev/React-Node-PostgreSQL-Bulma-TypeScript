@@ -11,6 +11,7 @@ export const initialStateVideoGamePost: IVideoGamePost = {
 }
 
 export interface IVigeoGameGet {
+    id: number
     title: string
     image: string
     createdAt: string

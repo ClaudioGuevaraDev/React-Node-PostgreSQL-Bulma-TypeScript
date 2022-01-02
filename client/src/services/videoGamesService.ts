@@ -18,8 +18,12 @@ export const updateImageOfVideoGame = async (formData: any, id: number) => {
     return data
 }
 
-export const getAllVideoGames = async () => {
-    const { data } = await axios.get(baseUrl)
+export interface GetAllVideoGames {
+    filter: number
+}
+
+export const getAllVideoGames = async (dataGet: GetAllVideoGames) => {
+    const { data } = await axios.post(`${baseUrl}/list`, dataGet)
 
     return data
 }

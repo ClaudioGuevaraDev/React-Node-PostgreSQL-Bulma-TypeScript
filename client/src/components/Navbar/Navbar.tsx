@@ -60,7 +60,7 @@ const Navbar = () => {
                 <div id="nav-menu" className="navbar-menu">
                     <div className="navbar-end">
                         <Link to='/home' className="navbar-item has-text-weight-semibold">Lista de juegos</Link>
-                        <Link to='/reviews' className='navbar-item has-text-weight-semibold'>Mis reseñas</Link>
+                        {/* <Link to='/reviews' className='navbar-item has-text-weight-semibold'>Mis reseñas</Link> */}
                         <div className='navbar-item'>
                             <div className='buttons'>
                                 <a className='button is-danger' onClick={handleOpenModal}>

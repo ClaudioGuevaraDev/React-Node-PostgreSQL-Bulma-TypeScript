@@ -1,4 +1,5 @@
 import { pool } from "../database";
+import { encryptPassword } from '../libs/handlePassword'
 
 export const createRoles = async () => {
     try {
@@ -51,6 +52,29 @@ export const createCategories = async () => {
             'INSERT INTO categories (name, createdAt, updatedAt) VALUES ($1, $2, $3)', 
             ['Deporte', new Date(), new Date()]
         )
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const createUserAdmin = async () => {
+    try {
+        const result = await pool.query(
+            'SELECT * FROM users'
+        )
+
+        if (result.rowCount > 0) return
+        
+        const roleFound = await pool.query(
+            'SELECT * FROM categories WHERE name = $1',
+            ["Admin"]
+        )
+
+        await pool.query(
+            'INSERT INTO users (username, email, password, role, createdAt, updatedAt) VALUES ($1, $2, $3, $4, $5, $6)',
+            ["Claudio Guevara", "claudio.guevara.dev@gmail.com", await encryptPassword("claudio123"), roleFound.rows[0].id, new Date(), new Date()]
+        )
+
     } catch (error) {
         console.log(error)
     }

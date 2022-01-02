@@ -55,9 +55,19 @@ export const updateImageOfVideoGame: RequestHandler = async (req, res) => {
 }
 
 export const getAllVideoGames: RequestHandler = async (req, res) => {
-    const result = await pool.query(
-        'SELECT * FROM videogames'
-    )
+    const { filter } = req.body
+    let result
+
+    if (filter === 1) {
+        result = await pool.query(
+            'SELECT * FROM videogames'
+        )
+    } else {
+        result = await pool.query(
+            'SELECT * FROM videogames WHERE categoryId = $1',
+            [filter]
+        )
+    }
 
     res.json(result.rows)
 }

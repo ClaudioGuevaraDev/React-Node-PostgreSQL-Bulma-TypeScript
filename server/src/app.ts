@@ -10,7 +10,8 @@ import config from './config'
 
 import {
     createRoles,
-    createCategories
+    createCategories,
+    createUserAdmin
 } from './libs/initialSetup'
 
 import * as routes from './routes'
@@ -20,6 +21,7 @@ const app = express()
 
 createRoles()
 createCategories()
+createUserAdmin()
 
 app.set('port', config.PORT)
 

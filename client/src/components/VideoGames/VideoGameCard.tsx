@@ -1,9 +1,11 @@
-import { useState, Dispatch, SetStateAction } from 'react'
+import { useState, Dispatch, SetStateAction, useContext } from 'react'
 import { Link } from 'react-router-dom'
 
 import { toast } from 'react-toastify'
 import { AiFillEdit, AiFillDelete } from 'react-icons/ai'
 import { MdAddComment } from 'react-icons/md'
+
+import GlobalContext from '../../context/GlobalContext'
 
 import {
     IVigeoGameGet
@@ -24,6 +26,8 @@ const VideoGameCard = (props: Props) => {
     const [selectVideoGame, setSelectVideoGame] = useState<string>('')
 
     const { videoGame, refresh, setRefresh } = props
+    const { state } = useContext(GlobalContext)
+    const { role } = state
 
     const handleOpenModalDelete = (): void => setClassModalDelete('modal is-active')
     const handleCloseModalDelete = (): void => setClassModalDelete('modal is-clipped')
@@ -65,23 +69,25 @@ const VideoGameCard = (props: Props) => {
                     <h2 className='has-text-weight-bold is-size-4 has-text-centered'>
                         {videoGame.title}
                     </h2>
-                    <div className='buttons is-flex is-justify-content-space-between is-align-items-center mt-5'>
-                        <button className='button is-warning is-small'>
-                            <i className='is-size-6 is-flex is-align-items-center'>
-                                <Link to={`/update-videogame/${videoGame.id}`} style={{color: '#000'}}><AiFillEdit/></Link>
-                            </i>
-                        </button>
-                        <button className='button is-danger is-small' onClick={() => handleModalDelete(videoGame.id)}>
-                            <i className='is-size-6 is-flex is-align-items-center'>
-                                <AiFillDelete/>
-                            </i>
-                        </button>
-                        <button className='button is-info is-small' onClick={handleOpenModalComment}>
-                            <i className='is-size-6 is-flex is-align-items-center'>
-                                <MdAddComment/>
-                            </i>
-                        </button>
-                    </div>
+                    {role === "Admin" && (
+                        <div className='buttons is-flex is-justify-content-space-between is-align-items-center mt-5'>
+                            <button className='button is-warning is-small'>
+                                <i className='is-size-6 is-flex is-align-items-center'>
+                                    <Link to={`/update-videogame/${videoGame.id}`} style={{color: '#000'}}><AiFillEdit/></Link>
+                                </i>
+                            </button>
+                            <button className='button is-danger is-small' onClick={() => handleModalDelete(videoGame.id)}>
+                                <i className='is-size-6 is-flex is-align-items-center'>
+                                    <AiFillDelete/>
+                                </i>
+                            </button>
+                            {/* <button className='button is-info is-small' onClick={handleOpenModalComment}>
+                                <i className='is-size-6 is-flex is-align-items-center'>
+                                    <MdAddComment/>
+                                </i>
+                            </button> */}
+                        </div>
+                    )}
                 </div>
             </div>
             <div className={classModalDelete}>
